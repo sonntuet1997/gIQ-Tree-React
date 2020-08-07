@@ -1,0 +1,12 @@
+/* Style for LoginView.tsx */
+
+@import "src/styles/mixins";
+
+.page {
+  &.login {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    @include flex(row, center, center);
+  }
+}

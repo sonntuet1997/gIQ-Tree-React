@@ -1,0 +1,11 @@
+.git
+.gitignore
+node_modules
+build
+.eslintrc.js
+README.md
+.firebaserc
+firebase.json
+.vscode/
+.idea/
+

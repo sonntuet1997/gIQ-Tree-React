@@ -1,0 +1,99 @@
+{
+  "name": "ots-management",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "run-s merge start-js",
+    "build": "run-s merge build-js",
+    "start-js": "react-app-rewired start",
+    "build-js": "react-app-rewired build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "extract": "i18next-extractor -i src/ -o public/i18n/ -p src/i18n/ extract",
+    "merge": "i18next-extractor -i src/ -o public/i18n/ -p src/i18n/ merge"
+  },
+  "proxy": "http://localhost:8080",
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true,
+        "modules": true
+      },
+      "ecmaVersion": 2020,
+      "sourceType": "module"
+    },
+    "ignorePatterns": [
+      "./config-overrides.js"
+    ],
+    "extends": "react-app"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "setupTests": "src/setupTests.ts"
+    },
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
+  },
+  "browserslist": {
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ]
+  },
+  "dependencies": {
+    "antd": "^4.5.2",
+    "axios": "^0.19.2",
+    "bootstrap": "^4.5.0",
+    "i18next": "^19.5.4",
+    "i18next-xhr-backend": "^3.2.2",
+    "react": "^16.13.1",
+    "react-console-emulator": "^4.0.1",
+    "react-dom": "^16.13.1",
+    "react-google-login": "^5.1.21",
+    "react-i18next": "^11.7.0",
+    "react-router-config": "^5.1.1",
+    "react-router-dom": "^5.2.0",
+    "react-use-websocket": "^2.1.1",
+    "react3l": "^4.0.0-test-rc33",
+    "reactn-devtools": "^1.1.0",
+    "redux": "^4.0.5",
+    "rxjs": "^6.6.2",
+    "universal-cookie": "^4.0.3"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.2",
+    "@testing-library/react": "^10.4.7",
+    "@testing-library/user-event": "^12.1.0",
+    "@types/bootstrap": "^4.5.0",
+    "@types/classnames": "^2.2.10",
+    "@types/jest": "^26.0.8",
+    "@types/node": "^14.0.27",
+    "@types/react": "^16.9.44",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-router": "^5.1.8",
+    "@types/react-router-config": "^5.0.1",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/universal-cookie": "^2.2.0",
+    "babel-plugin-import": "^1.13.0",
+    "customize-cra": "^1.0.0",
+    "firebase-tools": "^8.6.0",
+    "i18next-extractor": "^0.4.0",
+    "less": "^3.12.2",
+    "less-loader": "^6.2.0",
+    "node-sass": "^4.14.1",
+    "npm-run-all": "^4.1.5",
+    "react-app-rewired": "^2.1.6",
+    "react-scripts": "3.4.1",
+    "react3l-cli": "^0.4.0",
+    "ts-nameof.macro": "^4.2.2",
+    "typescript": "^3.9.7"
+  }
+}

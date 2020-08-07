@@ -1,0 +1,24 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/variables";
+
+$themes: (
+        default: (
+                white: #ffffff,
+                grey-100: #F3F6F9,
+                grey-200: #ECF0F3,
+                grey-300: #E5EAEE,
+                grey-400: #D6D6E0,
+                grey-500: #B5B5C3,
+                grey-600: #80808F,
+                grey-700: #464E5F,
+                grey-800: #1B283F,
+                grey-900: #212121,
+        ),
+);
+
+$header-height: 65px;
+
+$avatar-size: 40px;
+
+$aside-width: 250px;
