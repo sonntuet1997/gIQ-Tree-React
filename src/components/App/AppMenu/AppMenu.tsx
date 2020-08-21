@@ -5,7 +5,6 @@ import {Layout, Menu} from "antd";
 import logo from "../AppHeader/logo.svg";
 import {APP_TITLE, BASE_URL} from "../../../config/consts";
 import AppMenuItem from "./AppMenuItem/AppMenuItem";
-import {UploadOutlined, UserOutlined, VideoCameraOutlined} from '@ant-design/icons';
 
 const {Header, Content, Footer, Sider} = Layout;
 
@@ -17,6 +16,7 @@ function AppMenu({menu}: AppMenuProps) {
     const GoBackToHomePage = () => {
         window.location.href = BASE_URL;
     }
+    console.log(menu);
     const [state, setState] = useState({collapsed: false});
     const toggleCollapsed = () => {
         setState({
@@ -32,24 +32,23 @@ function AppMenu({menu}: AppMenuProps) {
     //             defaultOpenKeys={['sub1']}
     //             mode="inline"
     //             theme="dark"
-    //             inlineCollapsed={this.state.collapsed}
     //         >
-    //             <Menu.Item key="1" icon={<PieChartOutlined/>}>
+    //             <Menu.Item key="1" icon={<UploadOutlined/>}>
     //                 Option 1
     //             </Menu.Item>
-    //             <Menu.Item key="2" icon={<DesktopOutlined/>}>
+    //             <Menu.Item key="2" icon={<UploadOutlined/>}>
     //                 Option 2
     //             </Menu.Item>
-    //             <Menu.Item key="3" icon={<ContainerOutlined/>}>
+    //             <Menu.Item key="3" icon={<UploadOutlined/>}>
     //                 Option 3
     //             </Menu.Item>
-    //             <SubMenu key="sub1" icon={<MailOutlined/>} title="Navigation One">
+    //             <SubMenu key="sub1" icon={<UploadOutlined/>} title="Navigation One">
     //                 <Menu.Item key="5">Option 5</Menu.Item>
     //                 <Menu.Item key="6">Option 6</Menu.Item>
     //                 <Menu.Item key="7">Option 7</Menu.Item>
     //                 <Menu.Item key="8">Option 8</Menu.Item>
     //             </SubMenu>
-    //             <SubMenu key="sub2" icon={<AppstoreOutlined/>} title="Navigation Two">
+    //             <SubMenu key="sub2" icon={<UploadOutlined/>} title="Navigation Two">
     //                 <Menu.Item key="9">Option 9</Menu.Item>
     //                 <Menu.Item key="10">Option 10</Menu.Item>
     //                 <SubMenu key="sub3" title="Submenu">
@@ -79,7 +78,7 @@ function AppMenu({menu}: AppMenuProps) {
                     height: 'calc(100vh - 48px)',
                     position: 'fixed',
                     left: 0,
-                    top:0,
+                    top: 0,
                     zIndex: 999
                 }}
                 collapsed={state.collapsed}
@@ -92,74 +91,33 @@ function AppMenu({menu}: AppMenuProps) {
                     toggleCollapsed();
                     console.log(collapsed, type);
                 }}>
-                <div className="logo" onClick={GoBackToHomePage}>
-                    <Menu theme="dark" mode="inline">
-                        <Menu.Item key="1" className={"logo-container"}
-                                   icon={<img alt={'d'} className="app-logo-image" src={logo}/>}>
-                            <b>{APP_TITLE}</b>
-                        </Menu.Item>
+                <div style={{height: "calc(100vh - 70px)"}}>
+                    <div className="logo" onClick={GoBackToHomePage}>
+                        <Menu theme="dark" mode="inline">
+                            <Menu.Item key="1" className={"logo-container"}
+                                       icon={<img alt={'d'} className="app-logo-image" src={logo}/>}>
+                                <b>{APP_TITLE}</b>
+                            </Menu.Item>
+                        </Menu>
+                    </div>
+                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+                        {menu && menu.map((item) =>
+                            item.display ? AppMenuItem({item: item}) : null
+                        )}
                     </Menu>
+                    <div style={{
+                        marginTop: "1rem",
+                        color: "gray",
+                        fontSize: "small",
+                        textAlign: "center",
+                        width: "100%",
+                        visibility: (state.collapsed ? "hidden" : "visible")
+                    }}>
+                        <div>IQ-TREE ©2020</div>
+                        {/*<div>Created by SonNT-UET</div>*/}
+                    </div>
                 </div>
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                    {/*<Menu.Item key="1" icon={<UserOutlined/>}>*/}
-                    {/*    nav 1*/}
-                    {/*</Menu.Item>*/}
-                    {/*<Menu.Item key="2" icon={<VideoCameraOutlined/>}>*/}
-                    {/*    nav 2*/}
-                    {/*</Menu.Item>*/}
-                    {/*<Menu.Item key="3" icon={<UploadOutlined/>}>*/}
-                    {/*    nav 3*/}
-                    {/*</Menu.Item>*/}
-                    {/*<Menu.Item key="1" icon={<UserOutlined/>}>*/}
-                    {/*    nav 4*/}
-                    {/*</Menu.Item>*/}
-                    {/*<Menu.Item key="2" icon={<VideoCameraOutlined/>}>*/}
-                    {/*    nav 5*/}
-                    {/*</Menu.Item>*/}
-                    {/*<Menu.Item key="3" icon={<UploadOutlined/>}>*/}
-                    {/*    nav 6*/}
-                    {/*</Menu.Item>*/}
-                    {/*<Menu.Item key="1" icon={<UserOutlined/>}>*/}
-                    {/*    nav 7*/}
-                    {/*</Menu.Item>*/}
-                    {/*<Menu.Item key="2" icon={<VideoCameraOutlined/>}>*/}
-                    {/*    nav 8*/}
-                    {/*</Menu.Item>*/}
-                    {/*<Menu.Item key="3" icon={<UploadOutlined/>}>*/}
-                    {/*    nav 9*/}
-                    {/*</Menu.Item>*/}
-                    {/*<Menu.Item key="1" icon={<UserOutlined/>}>*/}
-                    {/*    nav 10*/}
-                    {/*</Menu.Item>*/}
-                    {/*<Menu.Item key="2" icon={<VideoCameraOutlined/>}>*/}
-                    {/*    nav 200*/}
-                    {/*</Menu.Item>*/}
-                    {/*<Menu.Item key="3" icon={<UploadOutlined/>}>*/}
-                    {/*    nav 3000*/}
-                    {/*</Menu.Item>*/}
-                    {/*<Menu.Item key="1" icon={<UserOutlined/>}>*/}
-                    {/*    nav 1000*/}
-                    {/*</Menu.Item>*/}
-                    {/*<Menu.Item key="2" icon={<VideoCameraOutlined/>}>*/}
-                    {/*    nav 200000*/}
-                    {/*</Menu.Item>*/}
-                    {/*<Menu.Item key="3" icon={<UploadOutlined/>}>*/}
-                    {/*    nav 3000000*/}
-                    {/*</Menu.Item>*/}
-                    {/*<Menu.Item key="1" icon={<UserOutlined/>}>*/}
-                    {/*    nav 10000*/}
-                    {/*</Menu.Item>*/}
-                    {/*<Menu.Item key="2" icon={<VideoCameraOutlined/>}>*/}
-                    {/*    nav 20000*/}
-                    {/*</Menu.Item>*/}
-                    {/*<Menu.Item key="3" icon={<UploadOutlined/>}>*/}
-                    {/*    nav 30000000*/}
-                    {/*</Menu.Item>*/}
 
-                    {menu && menu.map((item) =>
-                        item.display ? AppMenuItem({item: item}) : null
-                    )}
-                </Menu>
             </Sider>
         </>
 

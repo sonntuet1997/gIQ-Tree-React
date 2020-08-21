@@ -30,6 +30,7 @@ declare module 'react-console-emulator' {
     interface FunctionProps {
         pushToStdout: () => any;
         pushToHistory:() => any;
+        scrollToBottom:() => any;
     }
 
     export type TerminalProps = CommandProps &
@@ -38,5 +39,6 @@ declare module 'react-console-emulator' {
         StyleProps;
 
     export default class Terminal extends React.Component<TerminalProps, {}> {
+
     }
 }

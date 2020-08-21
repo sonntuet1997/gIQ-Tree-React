@@ -1,51 +1,57 @@
 @import "src/styles/mixins";
-@include themify($themes) {
-  .app {
-    min-width: 100vw;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-
-    .app-header {
-      width: 100%;
-      height: $header-height;
-      @include flex(row, space-between, center);
-      padding: 0 ($header-height - $avatar-size) / 2;
-      border-bottom: 1px solid $border-color;
-      //
-      //.app-logo {
-      //  color: themed("grey-600");
-      //  font-size: large;
-      //  font-weight: bold;
-      //  height: 90%;
-      //
-      //  .app-logo-image {
-      //    height: 100%;
-      //  }
-      //
-      //  .app-logo-text {
-      //    vertical-align: center;
-      //  }
-      //}
-      //
-      //.app-header-user {
-      //  margin-left: auto;
-      //  float: right;
-      //}
-    }
-
-    .app-body {
-      flex-grow: 1;
-      display: flex;
-      flex-direction: row;
-
-      .app-aside {
-        width: $aside-width;
-      }
-
-      .app-main {
-        flex-grow: 1;
-      }
-    }
-  }
+//@include themify($themes) {
+//  .app {
+//    min-width: 100vw;
+//    min-height: 100vh;
+//    display: flex;
+//    flex-direction: column;
+//
+//    .app-header {
+//      width: 100%;
+//      height: $header-height;
+//      @include flex(row, space-between, center);
+//      padding: 0 ($header-height - $avatar-size) / 2;
+//      border-bottom: 1px solid $border-color;
+//      //
+//      //.app-logo {
+//      //  color: themed("grey-600");
+//      //  font-size: large;
+//      //  font-weight: bold;
+//      //  height: 90%;
+//      //
+//      //  .app-logo-image {
+//      //    height: 100%;
+//      //  }
+//      //
+//      //  .app-logo-text {
+//      //    vertical-align: center;
+//      //  }
+//      //}
+//      //
+//      //.app-header-user {
+//      //  margin-left: auto;
+//      //  float: right;
+//      //}
+//    }
+//
+//    .app-body {
+//      flex-grow: 1;
+//      display: flex;
+//      flex-direction: row;
+//
+//      .app-aside {
+//        width: $aside-width;
+//      }
+//
+//      .app-main {
+//        flex-grow: 1;
+//      }
+//    }
+//  }
+//}
+.site-layout .site-layout-background {
+  background: #fff;
+}
+[data-theme="dark"] .site-layout .site-layout-background {
+  background: #141414;
 }

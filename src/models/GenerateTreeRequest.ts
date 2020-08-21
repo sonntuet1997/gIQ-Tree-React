@@ -1,10 +1,9 @@
-import {translate} from "react3l/helpers/i18n";
 import {Model} from "react3l/core";
 
 export class GenerateTreeRequest extends Model {
     public InputData?: {
         AlignmentFile: string,
-        UseExampleAlignmentFile: string,
+        UseExampleAlignmentFile: boolean,
         SequenceType: string,
         GeneticCode: string,
         PartitionFile: string,
@@ -14,7 +13,7 @@ export class GenerateTreeRequest extends Model {
         SubstitutionModel: string,
         FreeRateHeterogeneity: string,
         RateHeterogeneity: string,
-        RateCategory: string,
+        RateCategory: number,
         StateFrequency: string,
         AscertainmentCorrection: string
     }

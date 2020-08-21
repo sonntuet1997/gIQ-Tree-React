@@ -1,24 +1,18 @@
-import React, {useMemo, useRef} from 'react';
+import {useEffect, useMemo, useRef} from 'react';
 import useWebSocket from 'react-use-websocket';
-
-const commands = {
-    echo: {
-        description: 'Echo a passed string.',
-        usage: 'echo <string>',
-        fn: function () {
-            return `${Array.from(arguments).join(' ')}`
-        }
-    }
-}
 
 const getWSPoint = () => "ws://" + window.location.hostname;
 
-export const WebSocketDemo = ({onJson, logLink}: { onJson: any, logLink: string }) => {
+export const WebSocket = ({onJson, logLink}: { onJson: Function, logLink: string }) => {
     const messageHistory = useRef<MessageEvent[]>([]);
     const {
         lastMessage,
         lastJsonMessage
-    } = useWebSocket(getWSPoint() + logLink, {onClose: console.log});
+    } = useWebSocket((logLink === '' ? getWSPoint() + ':8080/LogEndpoint/0A8350C5B7EF735968D84D20535A76E3-aln02455' : logLink), {
+        onClose: (e) => {
+            console.log(e)
+        }
+    });
     messageHistory.current = useMemo(() =>
         messageHistory.current.concat(lastMessage), [lastMessage]);
     //
@@ -35,8 +29,11 @@ export const WebSocketDemo = ({onJson, logLink}: { onJson: any, logLink: string 
     //     [ReadyState.CLOSED]: 'Closed',
     //     [ReadyState.UNINSTANTIATED]: 'Uninstantiated',
     // }[readyState];
-    if (logLink == '') return null;
-    onJson(lastJsonMessage);
+    // if (logLink == '') return null;
+    // console.log(lastJsonMessage)
+    useEffect(() => {
+        onJson(lastJsonMessage);
+    }, [lastJsonMessage]);
     // const x: any = React.createRef();
     // console.log(messageHistory)
     // let t = messageHistory.current

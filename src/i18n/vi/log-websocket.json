@@ -1,0 +1,12 @@
+{
+  "logWebsocket.connecting": "",
+  "logWebsocket.canceling": "",
+  "logWebsocket.error": "",
+  "logWebsocket.canceled": "",
+  "logWebsocket.success": "",
+  "logWebsocket.processing": "",
+  "logWebsocket.action.cancel": "",
+  "logWebsocket.action.downloading": "",
+  "logWebsocket.action.download": "",
+  "logWebsocket.action.showTree": ""
+}

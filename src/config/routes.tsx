@@ -1,28 +1,28 @@
 import {RouteConfig} from 'react-router-config';
 import {LOGIN_ROUTE} from 'config/route-consts';
 import LoginView from 'views/LoginView/LoginView';
-import {translate} from 'react3l/helpers/i18n';
 import App from 'views/App/App';
 import GenerateTree from "views/GenerateTree/GenerateTree";
-import {WebSocketDemo} from "../views/Test/Test";
 import React from "react";
-import {BranchesOutlined, ExperimentOutlined, HomeOutlined} from '@ant-design/icons';
+import {AreaChartOutlined, BranchesOutlined, ExperimentOutlined, HomeOutlined} from '@ant-design/icons';
+import TreeView from "../views/TreeView/TreeView";
+import {translate} from "react3l/helpers";
 
 export const routes: RouteConfig[] = [
     {
-        name: translate('routes.login'),
+        name: "Login",
         path: LOGIN_ROUTE,
         component: LoginView,
         display: false,
     },
     {
-        name: translate('routes.home'),
+        name: "Home",
         path: '/',
         component: App,
         display: true,
         routes: [
             {
-                name: translate('routes.home'),
+                name: "Home",
                 path: '.',
                 routes: [],
                 icon: <HomeOutlined/>,
@@ -30,7 +30,7 @@ export const routes: RouteConfig[] = [
                 display: true
             },
             {
-                name: translate('routes.generateTree'),
+                name: "Generate Tree",
                 path: '/generateTree',
                 component: GenerateTree,
                 routes: [],
@@ -38,7 +38,15 @@ export const routes: RouteConfig[] = [
                 display: true
             },
             {
-                name: translate('routes.testtest'),
+                name: "Tree",
+                path: '/tree/:urlId',
+                component: TreeView,
+                // routes: [],
+                icon: <AreaChartOutlined/>,
+                display: false
+            },
+            {
+                name: "Test",
                 path: '/test',
                 icon: <ExperimentOutlined/>,
                 routes: [
