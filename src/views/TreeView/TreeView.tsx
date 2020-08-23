@@ -5,6 +5,9 @@ import parse from "../../newick/tools/parse";
 import {useEffect, useState} from "react";
 import Tree from 'react-d3-tree';
 import {_TreeViewRepository} from "../../repositories/TreeViewRepository";
+import {ExpandOutlined, ZoomInOutlined, ZoomOutOutlined} from '@ant-design/icons';
+import {Button} from "antd";
+import {useTranslation} from "react-i18next";
 
 const convertTree = (tree: any) => {
     const children = tree.branchset ? tree.branchset.map(convertTree) : [];
@@ -15,11 +18,10 @@ const convertTree = (tree: any) => {
 }
 
 function TreeView({match}: any) {
-    const t = parse("(LngfishAu:0.1709558514,(LngfishSA:0.1883618082,LngfishAf:0.1648507162):0.1073339725,(Frog:0.2562207382,((((Turtle:0.2215233768,(Crocodile:0.3056620225,Bird:0.2310102500):0.0651255621):0.0364815770,Sphenodon:0.3446637657):0.0204360122,Lizard:0.3860396409):0.0740136760,(((Human:0.1851800594,(Seal:0.0944389793,(Cow:0.0822974837,Whale:0.1013014129):0.0404363701):0.0252508854):0.0340575240,(Mouse:0.0584160619,Rat:0.0905579131):0.1218136963):0.0607262363,(Platypus:0.1920256326,Opossum:0.1510231493):0.0373213911):0.1490653601):0.1275684381):0.0940547204);\n");
-    console.log(match);
+    const [translate] = useTranslation();
     const [treeData, setTreeData] = useState({});
-    // const [treeData, setTreeData] = useState(convertTree(t));
-    const [translate, setTranslate] = useState({x: 0, y: 0});
+    const [zoom, setZoom] = useState(0.9);
+    const [translatePosition, setTranslate] = useState({x: 0, y: 0});
     const [visibility, setVisibility] = useState("hidden" as any);
     const [pathFunction, setPathFunction] = useState("straight" as any);
     const treeRef: any = React.createRef();
@@ -29,24 +31,39 @@ function TreeView({match}: any) {
             r: 10,
         },
     }
-    useEffect(() => {
-
-    }, []);
-    useEffect(() => {
+    const center = () => {
         setTranslate({
-            x: treeRef.current.offsetWidth / 7,
-            y: treeRef.current.offsetHeight / 2
+            x: treeRef.current.offsetWidth / 7 + Math.random(),
+            y: treeRef.current.offsetHeight / 2 + Math.random()
         });
-        _TreeViewRepository.get(match.params.urlId).subscribe((tree: any) => {
-            console.log(tree);
-            if (tree.data) {
-                let convertedTree = convertTree(parse(tree.data));
-                setTreeData(convertedTree);
-                setPathFunction("step");
-                setVisibility("visible");
-            }
-        });
-    }, []);
+    }
+    const zoomIn = () => {
+        setZoom(zoom + 0.1);
+    }
+    const zoomOut = () => {
+        setZoom(zoom - 0.1);
+    }
+    useEffect(() => {
+        setTreeData({});
+        center();
+        let tempData = "";
+        const loop = () => {
+            _TreeViewRepository.get(match.params.urlId).subscribe((tree: any) => {
+                if (tree.data) {
+                    if (tempData != tree.data) {
+                        console.log(tempData);
+                        tempData = tree.data;
+                        let convertedTree = convertTree(parse(tree.data));
+                        setTreeData(convertedTree);
+                        setPathFunction("step");
+                        setVisibility("visible");
+                    }
+                }
+                setTimeout(loop, 1000);
+            });
+        }
+        loop();
+    }, [match.params.urlId]);
     const style = {
         nodes: {
             node: {
@@ -68,8 +85,13 @@ function TreeView({match}: any) {
         },
     }
     return (<div style={{visibility: visibility, height: "calc(100vh - 70px)"}} ref={treeRef}>
-        <Tree styles={style} translate={translate} data={treeData} pathFunc={pathFunction}
-              scaleExtent={{min: 0.1, max: 10}}  nodeSvgShape={nodeSvgShape}
+        <div style={{width: "130px", position: "absolute", right: "30px", top: "30px"}}>
+            <Button icon={<ExpandOutlined/>} block onClick={center}>{translate("tree.centre")}</Button>
+            <Button icon={<ZoomInOutlined/>} block onClick={zoomIn}>{translate("tree.zoomIn")}</Button>
+            <Button icon={<ZoomOutOutlined/>} block onClick={zoomOut}>{translate("tree.zoomOut")}</Button></div>
+
+        <Tree styles={style} translate={translatePosition} data={treeData} pathFunc={pathFunction}
+              scaleExtent={{min: 0.1, max: 10}} nodeSvgShape={nodeSvgShape} zoom={zoom}
               separation={{siblings: 0.4, nonSiblings: 0.8}}/>
     </div>)
 }

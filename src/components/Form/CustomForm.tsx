@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import './CustomForm.scss';
-import {Button, Checkbox, Collapse, Form, Input, InputNumber, Radio, Select, Switch, Upload} from "antd";
+import {Button, Checkbox as AntCheckBox, Collapse, Form, Input, InputNumber, Radio, Select, Switch, Upload} from "antd";
 import {InboxOutlined} from '@ant-design/icons';
 import nextId from "react-id-generator";
 
@@ -51,7 +51,14 @@ const RadioGroup = ({label, name, values, onChange, disabled = false}: { disable
 const CheckBoxGroup = ({label, values, name, onChange, disabled = false}: { disabled?: boolean, onChange?: any, name: string, label: string, values: { value: string, label: string }[] }) => {
     return (
         <Form.Item label={AddColon(label)} name={name}>
-            <Checkbox.Group options={values} onChange={onChange} disabled={disabled}/>
+            <AntCheckBox.Group options={values} onChange={onChange} disabled={disabled}/>
+        </Form.Item>
+    )
+}
+const CheckBox = ({label, name, onChange, disabled = false, value}: { disabled?: boolean, onChange?: any, name: string, label: string, value: { label: string } }) => {
+    return (
+        <Form.Item label={AddColon(label)} name={name} valuePropName="checked">
+            <AntCheckBox onChange={onChange} disabled={disabled}>{value.label}</AntCheckBox>
         </Form.Item>
     )
 }
@@ -133,6 +140,12 @@ export function CustomForm({onFieldsChange, parentName = "", parentDataStructure
             }
             if (dataStructure[name].type == 'InputNumber') {
                 return (<Inputnumberr {...dataStructure[name]} name={[...path, parentName, name]} key={nextId()}/>)
+            }
+            if (dataStructure[name].type == 'CheckBoxGroup') {
+                return (<CheckBoxGroup {...dataStructure[name]} name={[...path, parentName, name]} key={nextId()}/>)
+            }
+            if (dataStructure[name].type == 'CheckBox') {
+                return (<CheckBox {...dataStructure[name]} name={[...path, parentName, name]} key={nextId()}/>)
             }
         })}
     </Fragment>);

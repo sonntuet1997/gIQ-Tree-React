@@ -25,6 +25,8 @@ function GenerateTree() {
         if (!useExampleFile) formData.append("alignment", form.getFieldsValue().inputData.alignmentFile.file);
         formData.append("data", JSON.stringify(form.getFieldsValue()));
         _GenerateTreeRepository.startGenerate(formData).subscribe(x => {
+            x.visible = true;
+            x.id = nextId();
             appendLog(x);
         }, error => {
             throw new Error(error);
@@ -139,7 +141,8 @@ function GenerateTree() {
             substitutionModel: {
                 type: 'SelectGroup',
                 label: translate('generateTree.SubstitutionOption.SubstitutionModel.Label'),
-                values: [{value: "Auto"}, {value: "---Binary---"}, {value: "JC2"}, {value: "GTR2"}, {value: "---DNA---"}, {value: "JC"},
+                values: [{value: "Auto"}, {value: "---Binary---"}, {value: "JC2"}, {value: "GTR2"}, {value: "---DNA---"},
+                    {value: "JC"},
                     {value: "F81"}, {value: "K80"}, {value: "HKY"}, {value: "TNe"}, {value: "TN"}, {value: "K81"},
                     {value: "K81u"}, {value: "TPM2"}, {value: "TPM2u"}, {value: "TPM3"}, {value: "TPM3u"},
                     {value: "TIMe"}, {value: "TIM"}, {value: "TIM2e"}, {value: "TIM2"}, {value: "TIM3e"},
@@ -155,17 +158,17 @@ function GenerateTree() {
                     {value: "MG2K"}, {value: "KOSI07"}, {value: "SCHN05"}, {value: "---Morphology---"}, {value: "MK"}, {value: "ORDERED"}]
             },
             freeRateHeterogeneity: {
-                type: 'CheckBoxGroup',
+                type: 'CheckBox',
                 label: translate('generateTree.SubstitutionOption.FreeRateHeterogeneity.Label'),
-                values: [{value: 'R', label: translate('generateTree.SubstitutionOption.FreeRateHeterogeneity.R')}]
+                value: {label: translate('generateTree.SubstitutionOption.FreeRateHeterogeneity.R')}
                 // value: translate()
             },
-            rateHeterogeneity: {
+            rateHeterogeneityOptions: {
                 type: 'CheckBoxGroup',
-                label: translate('generateTree.SubstitutionOption.RateHeterogeneity.Label'),
+                label: translate('generateTree.SubstitutionOption.RateHeterogeneityOptions.Label'),
                 values: [
-                    {value: 'G', label: translate('generateTree.SubstitutionOption.RateHeterogeneity.G')},
-                    {value: 'I', label: translate('generateTree.SubstitutionOption.RateHeterogeneity.I')}
+                    {value: 'G', label: translate('generateTree.SubstitutionOption.RateHeterogeneityOptions.G')},
+                    {value: 'I', label: translate('generateTree.SubstitutionOption.RateHeterogeneityOptions.I')}
                 ]
             },
             rateCategory: {
@@ -184,19 +187,23 @@ function GenerateTree() {
                 type: 'RadioGroup',
                 label: translate('generateTree.SubstitutionOption.StateFrequency.Label'),
                 values: [
-                    {value: '0', label: translate('generateTree.SubstitutionOption.StateFrequency.Empirical')},
-                    {value: '1', label: translate('generateTree.SubstitutionOption.StateFrequency.AAModel')},
-                    {value: '2', label: translate('generateTree.SubstitutionOption.StateFrequency.MLOptimized')},
-                    {value: '3', label: translate('generateTree.SubstitutionOption.StateFrequency.CodonF1x4')},
-                    {value: '4', label: translate('generateTree.SubstitutionOption.StateFrequency.CodonF3x4')}
+                    {value: 'Empirical', label: translate('generateTree.SubstitutionOption.StateFrequency.Empirical')},
+                    {value: 'AAModel', label: translate('generateTree.SubstitutionOption.StateFrequency.AAModel')},
+                    {
+                        value: 'MLOptimized',
+                        label: translate('generateTree.SubstitutionOption.StateFrequency.MLOptimized')
+                    },
+                    {value: 'CodonF1x4', label: translate('generateTree.SubstitutionOption.StateFrequency.CodonF1x4')},
+                    {value: 'CodonF3x4', label: translate('generateTree.SubstitutionOption.StateFrequency.CodonF3x4')}
                 ]
             },
             ascertainmentCorrection: {
-                type: 'CheckBoxGroup',
+                type: 'CheckBox',
                 label: translate('generateTree.SubstitutionOption.AscertainmentCorrection.Label'),
-                values: [
-                    {value: '0', label: translate('generateTree.SubstitutionOption.AscertainmentCorrection.ASC')}
-                ]
+                value: {label: translate('generateTree.SubstitutionOption.AscertainmentCorrection.ASC')}
+                // values: [
+                //     {value: '0', label: translate('generateTree.SubstitutionOption.AscertainmentCorrection.ASC')}
+                // ]
             }
         },
         branchSupportAnalysis: {
@@ -226,10 +233,9 @@ function GenerateTree() {
                 }]
             },
             createUfBootFile: {
-                type: 'CheckBoxGroup',
+                type: 'CheckBox',
                 label: translate('generateTree.BranchSupportAnalysis.CreateUfBootFile.Label'),
-                values: [{value: 'Yes', label: translate('generateTree.BranchSupportAnalysis.CreateUfBootFile.Yes')}]
-                // value: translate()
+                value: {label: translate('generateTree.BranchSupportAnalysis.CreateUfBootFile.Yes')}
             },
             maxIteration: {
                 type: 'InputNumber',
@@ -266,12 +272,11 @@ function GenerateTree() {
                     }]
                 },
                 approximateBayes: {
-                    type: 'RadioGroup',
+                    type: 'CheckBox',
                     label: translate('generateTree.BranchSupportAnalysis.SingleBranchTest.ApproximateBayes.Label'),
-                    values: [{
-                        value: 'Yes',
+                    value: {
                         label: translate('generateTree.BranchSupportAnalysis.SingleBranchTest.ApproximateBayes.Yes')
-                    }]
+                    }
                 }
             }
         },

@@ -19,6 +19,7 @@ import translationVI from "./i18nn/vi.json";
 
 TranslationRepository.baseURL = I18N_ROUTE;
 const AppEntry = React.lazy(async () => {
+    console.log("AppEntry");
     /**
      * Add ReactN devTools in development
      */
