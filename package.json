@@ -5,7 +5,7 @@
   "scripts": {
     "start": "run-s merge start-js",
     "build": "run-s merge build-js",
-    "start-js": "react-app-rewired start",
+    "start-js": "webpack-dev-server --config ./config-overrides.js --no-inline",
     "build-js": "react-app-rewired build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

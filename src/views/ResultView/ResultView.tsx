@@ -10,7 +10,6 @@ import {LogTab} from "./LogTab";
 
 
 function ResultView() {
-    console.log(111);
     const [translate] = useTranslation();
     const {logs, setLogs} = useResultView();
     const [, setError] = useState(() => null);
@@ -23,6 +22,11 @@ function ResultView() {
             // });
         });
     }
+
+    const deleteTab = (url: string) => {
+        setLogs(logs.filter(value => value.url != url));
+    }
+
     useEffect(() => {
         _ResultViewRepository.getAll().subscribe((logResults: Log[]) => {
             console.log(logResults);
@@ -40,7 +44,7 @@ function ResultView() {
     console.log(logs);
     return (<div style={{zIndex: 999, position: 'fixed', bottom: '1vh', right: 0, alignItems: 'flex-end'}}>
         {logs.map((log) =>
-            <LogTab  {...log} onKill={killProcess} key={log.url + log.id}/>
+            <LogTab  {...log} onKill={killProcess} key={log.url + log.id} onDeleteTab={deleteTab}/>
         )}
     </div>);
 }

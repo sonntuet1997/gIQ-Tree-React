@@ -22,7 +22,7 @@ import {PulseLoader} from "react-spinners";
 import {_FileRepository} from "../../repositories/FileRepository";
 import {useTranslation} from "react-i18next";
 
-export const LogTab = ({url, processedFile, onKill, visible}: Log & { onKill: any }) => {
+export const LogTab = ({url, processedFile, onKill,onDeleteTab, visible}: Log & { onKill: any, onDeleteTab:any }) => {
     const [translate] = useTranslation();
     const [isShow, setShow] = useState(visible);
     const [results, setResults] = useState([] as any[]);
@@ -59,6 +59,11 @@ export const LogTab = ({url, processedFile, onKill, visible}: Log & { onKill: an
         setStatus('Canceling');
         onKill(url);
     }
+
+    const deleleTab = () => {
+        // setStatus('Canceling');
+        onDeleteTab(url);
+    }
     const showModal = () => {
         setShow(true);
     };
@@ -77,6 +82,9 @@ export const LogTab = ({url, processedFile, onKill, visible}: Log & { onKill: an
 
     const handleCancel = () => {
         setShow(false);
+        if(status == "Canceled"){
+            onDeleteTab(url);
+        }
     };
 
     useEffect(() => {
@@ -114,17 +122,17 @@ export const LogTab = ({url, processedFile, onKill, visible}: Log & { onKill: an
             "Processing": translate("logWebsocket.processing"),
         },
         action: {
-            "Connecting": (<></>),
-            "Canceling": (<></>),
-            "Error": (<></>),
-            "Canceled": (<></>),
-            "Success": (<span onClick={(e) => {
+            "Connecting": (<><CloseSquareOutlined onClick={killProcess}/></>),
+            "Canceling": (<><CloseSquareOutlined onClick={killProcess}/></>),
+            "Error": (<><CloseSquareOutlined onClick={killProcess}/></>),
+            "Canceled": (<><CloseSquareOutlined onClick={deleleTab}/></>),
+            "Success": (<><span onClick={(e) => {
                 e.stopPropagation();
                 handleDownloadZip();
             }}>
                 {downloadingZip ? <LoadingOutlined/> : <DownloadOutlined/>}
-            </span>),
-            "Processing": (<></>)
+            </span><CloseSquareOutlined onClick={killProcess}/></>),
+            "Processing": (<><CloseSquareOutlined onClick={killProcess}/></>)
         },
         tooltip: {
             "Connecting": (<>{translate("logWebsocket.connecting")}</>),
@@ -336,7 +344,6 @@ export const LogTab = ({url, processedFile, onKill, visible}: Log & { onKill: an
                         }}> {processedFile} </div>
                     </div>
                     {statusComponent.action[status]}
-                    <CloseSquareOutlined onClick={killProcess}/>
                     {/*</div>*/}
                 </Button>
             </Tooltip>

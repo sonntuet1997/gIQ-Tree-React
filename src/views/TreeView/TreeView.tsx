@@ -89,7 +89,6 @@ function TreeView({match}: any) {
             <Button icon={<ExpandOutlined/>} block onClick={center}>{translate("tree.centre")}</Button>
             <Button icon={<ZoomInOutlined/>} block onClick={zoomIn}>{translate("tree.zoomIn")}</Button>
             <Button icon={<ZoomOutOutlined/>} block onClick={zoomOut}>{translate("tree.zoomOut")}</Button></div>
-
         <Tree styles={style} translate={translatePosition} data={treeData} pathFunc={pathFunction}
               scaleExtent={{min: 0.1, max: 10}} nodeSvgShape={nodeSvgShape} zoom={zoom}
               separation={{siblings: 0.4, nonSiblings: 0.8}}/>
