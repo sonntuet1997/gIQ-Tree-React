@@ -29,8 +29,8 @@ declare module 'react-console-emulator' {
 
     interface FunctionProps {
         pushToStdout: () => any;
-        pushToHistory:() => any;
-        scrollToBottom:() => any;
+        pushToHistory: () => any;
+        scrollToBottom: () => any;
     }
 
     export type TerminalProps = CommandProps &
@@ -42,3 +42,26 @@ declare module 'react-console-emulator' {
 
     }
 }
+
+declare module 'react-phylotree' {
+    import * as React from 'react';
+
+    interface OptionProps {
+        width: number,
+        height: number,
+        maxLabelWidth: number,
+        transform:string,
+        newick: string,
+        alignTips: string,
+        sort: string,
+        includeBLAxis
+
+    }
+
+    export default class Phylotree extends React.Component<OptionProps, {}> {
+    }
+}
+
+
+
+declare const d3: any;

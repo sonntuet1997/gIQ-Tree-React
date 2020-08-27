@@ -7,6 +7,7 @@ import React from "react";
 import {AreaChartOutlined, BranchesOutlined, ExperimentOutlined, HomeOutlined} from '@ant-design/icons';
 import TreeView from "../views/TreeView/TreeView";
 import {translate} from "react3l/helpers";
+import Test from "../views/Test/Test";
 
 export const routes: RouteConfig[] = [
     {
@@ -49,22 +50,23 @@ export const routes: RouteConfig[] = [
                 name: "Test",
                 path: '/test',
                 icon: <ExperimentOutlined/>,
-                routes: [
-                    {
-                        name: translate('routes.generateTreetest'),
-                        path: '/generateTree',
-                        component: GenerateTree,
-                        routes: [],
-                        icon: <ExperimentOutlined/>,
-                        display: true
-                    }, {
-                        name: translate('routes.tasdestestt'),
-                        path: '/test',
-                        routes: [],
-                        icon: <ExperimentOutlined/>,
-                        display: true
-                    }],
+                component: Test,
+                // routes: [
+                //     {
+                //         name: translate('routes.generateTreetest'),
+                //         path: '/generateTree',
+                //         component: GenerateTree,
+                //         routes: [],
+                //         icon: <ExperimentOutlined/>,
+                //         display: true
+                //     }, {
+                //         name: translate('routes.tasdestestt'),
+                //         path: '/test',
+                //         routes: [],
+                //         icon: <ExperimentOutlined/>,
+                //         display: true
+                //     }],
                 display: true
-            }],
+            }]
     }
 ];
