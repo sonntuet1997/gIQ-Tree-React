@@ -10,9 +10,10 @@ const AddColon = (label: string) => (label + ': ');
 
 const File = ({name, label, value, onChange, action = "", directory = false, disabled = false, beforeUpload = () => false, multiple = false}
                   : { action?: string, name: string, label: string; value: string, disabled?: boolean, onChange?: any, directory?: boolean, beforeUpload?: any, multiple?: boolean }) => {
+    // console.log(1);
     return (<Form.Item label={AddColon(label)} name={name} valuePropName="file">
         <Upload action={action} directory={directory} onChange={onChange} disabled={disabled}
-                beforeUpload={beforeUpload} multiple={multiple}>
+                beforeUpload={beforeUpload} multiple={multiple} >
             <Button disabled={disabled}>
                 <InboxOutlined/> {value}
             </Button>{/*<p className="ant-upload-drag-icon">*/}
@@ -93,7 +94,7 @@ const Inputnumberr = ({label, rules, name, onChange, disabled = false}: { disabl
 }
 
 
-export function CustomForm({onFieldsChange, parentName = "", parentDataStructure, path = []}: { onFieldsChange?: any, parentName?: any, data?: any, parentDataStructure: any, path?: string[] }) {
+export function CustomForm({onFieldsChange, parentName = "", parentDataStructure, path = [], key}: {key?:string, onFieldsChange?: any, parentName?: any, data?: any, parentDataStructure: any, path?: string[] }) {
     // console.log(data);
     // console.log(parentName);
     const dataStructure = parentDataStructure[parentName] ?? parentDataStructure;
@@ -101,7 +102,7 @@ export function CustomForm({onFieldsChange, parentName = "", parentDataStructure
     let parentComponent = dataStructure.parentComponent;
     // console.log(ParentComponent);
     // console.log(dataStructure);
-    const myForm = (): JSX.Element => (<Fragment key={nextId()}>
+    const myForm = (): JSX.Element => (<Fragment key={key}>
         {Object.keys(dataStructure).map(name => {
             if (name == 'label' || name == 'parentComponent') {
                 // console.log(name, 1);
@@ -123,29 +124,30 @@ export function CustomForm({onFieldsChange, parentName = "", parentDataStructure
                     onFieldsChange: onFieldsChange,
                     parentName: name,
                     parentDataStructure: dataStructure,
-                    path: newPath
+                    path: newPath,
+                    key: parentName+name
                 });
             }
             if (dataStructure[name].type == 'Toggle') {
-                return (<Toggle {...dataStructure[name]} name={[...path, parentName, name]} key={nextId()}/>)
+                return (<Toggle {...dataStructure[name]} name={[...path, parentName, name]} key={parentName+name}/>)
             }
             if (dataStructure[name].type == 'File') {
-                return (<File {...dataStructure[name]} name={[...path, parentName, name]} key={nextId()}/>)
+                return (<File {...dataStructure[name]} name={[...path, parentName, name]} key={parentName+name}/>)
             }
             if (dataStructure[name].type == 'RadioGroup') {
-                return (<RadioGroup {...dataStructure[name]} name={[...path, parentName, name]} key={nextId()}/>)
+                return (<RadioGroup {...dataStructure[name]} name={[...path, parentName, name]} key={parentName+name}/>)
             }
             if (dataStructure[name].type == 'SelectGroup') {
-                return (<SelectGroup {...dataStructure[name]} name={[...path, parentName, name]} key={nextId()}/>)
+                return (<SelectGroup {...dataStructure[name]} name={[...path, parentName, name]} key={parentName+name}/>)
             }
             if (dataStructure[name].type == 'InputNumber') {
-                return (<Inputnumberr {...dataStructure[name]} name={[...path, parentName, name]} key={nextId()}/>)
+                return (<Inputnumberr {...dataStructure[name]} name={[...path, parentName, name]} key={parentName+name}/>)
             }
             if (dataStructure[name].type == 'CheckBoxGroup') {
-                return (<CheckBoxGroup {...dataStructure[name]} name={[...path, parentName, name]} key={nextId()}/>)
+                return (<CheckBoxGroup {...dataStructure[name]} name={[...path, parentName, name]} key={parentName+name}/>)
             }
             if (dataStructure[name].type == 'CheckBox') {
-                return (<CheckBox {...dataStructure[name]} name={[...path, parentName, name]} key={nextId()}/>)
+                return (<CheckBox {...dataStructure[name]} name={[...path, parentName, name]} key={parentName+name}/>)
             }
         })}
     </Fragment>);

@@ -29,24 +29,28 @@ function ResultView() {
     }
 
     useEffect(() => {
-        _ResultViewRepository.getAll().subscribe((logResults: Log[]) => {
-            console.log(logResults);
-            setLogs(logResults ?? []);
-        }, error => {
-            setError(() => {
-                throw error;
+        const loop = () => {
+            _ResultViewRepository.getAll().subscribe((logResults: Log[]) => {
+                console.log(logResults);
+                setLogs(logResults ?? []);
+                setTimeout(loop, 5000);
+            }, error => {
+                setError(() => {
+                    throw error;
+                });
             });
-        });
+        }
+        loop();
     }, []);
     //
     // useEffect(() =>{
     //
     // },[]);
-    return (<Affix style={{textAlign: "end", position: 'fixed', bottom: '1vh', right: 0}}>
+    return (<div style={{textAlign: "end", position: 'fixed', bottom: '1vh', right: 0}}>
             {logs.map((log) =>
                 <LogTab  {...log} onKill={killProcess} key={log.url + log.id} onDeleteTab={deleteTab}/>
             )}
-        </Affix>
+        </div>
     );
 }
 
