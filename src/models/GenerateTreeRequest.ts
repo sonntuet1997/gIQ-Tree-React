@@ -33,4 +33,8 @@ export class GenerateTreeRequest extends Model {
         PerturbationStrength: string,
         StoppingRule: string
     }
+
+    public constructor() {
+        super();
+    }
 }

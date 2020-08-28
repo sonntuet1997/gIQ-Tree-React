@@ -5,8 +5,9 @@
   "logWebsocket.canceled": "Canceled",
   "logWebsocket.success": "Success",
   "logWebsocket.processing": "Processing",
-  "logWebsocket.action.cancel": "Cancel",
+  "logWebsocket.action.showTree": "Show tree",
+  "logWebsocket.action.stop": "Stop",
   "logWebsocket.action.downloading": "Downloading",
   "logWebsocket.action.download": "Download result file",
-  "logWebsocket.action.showTree": "Show tree"
+  "logWebsocket.action.cancel": "Cancel"
 }

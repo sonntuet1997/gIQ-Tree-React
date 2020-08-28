@@ -5,8 +5,9 @@
   "logWebsocket.canceled": "",
   "logWebsocket.success": "",
   "logWebsocket.processing": "",
-  "logWebsocket.action.cancel": "",
+  "logWebsocket.action.showTree": "",
+  "logWebsocket.action.stop": "",
   "logWebsocket.action.downloading": "",
   "logWebsocket.action.download": "",
-  "logWebsocket.action.showTree": ""
+  "logWebsocket.action.cancel": ""
 }
