@@ -2,25 +2,25 @@ import React, {Fragment} from 'react';
 import './CustomForm.scss';
 import {Button, Checkbox as AntCheckBox, Collapse, Form, Input, InputNumber, Radio, Select, Switch, Upload} from "antd";
 import {InboxOutlined} from '@ant-design/icons';
-import nextId from "react-id-generator";
 
 const {Panel} = Collapse;
 
 const AddColon = (label: string) => (label + ': ');
 
-const File = ({name, label, value, onChange, action = "", directory = false, disabled = false, beforeUpload = () => false, multiple = false}
-                  : { action?: string, name: string, label: string; value: string, disabled?: boolean, onChange?: any, directory?: boolean, beforeUpload?: any, multiple?: boolean }) => {
+const File = ({rules, name, label, value, onChange, action = "", directory = false, disabled = false, beforeUpload = () => false, multiple = false}
+                  : { rules?: any, action?: string, name: string, label: string; value: string, disabled?: boolean, onChange?: any, directory?: boolean, beforeUpload?: any, multiple?: boolean }) => {
     // console.log(1);
-    return (<Form.Item label={AddColon(label)} name={name} valuePropName="file">
-        <Upload action={action} directory={directory} onChange={onChange} disabled={disabled}
-                beforeUpload={beforeUpload} multiple={multiple} >
+    return (<Form.Item rules={rules} label={AddColon(label)} name={name} valuePropName="file">
+        <Upload action={action} directory={directory} onChange={(e:any) => {
+            if(e.fileList.length == 0){
+                e.file = null;
+            }
+            onChange(e.fileList.length == 0 ? null : e);
+        }} disabled={disabled}
+                beforeUpload={beforeUpload} multiple={multiple}>
             <Button disabled={disabled}>
                 <InboxOutlined/> {value}
-            </Button>{/*<p className="ant-upload-drag-icon">*/}
-            {/*<InboxOutlined/>*/}
-            {/*</p>*/}
-            {/*<p className="ant-upload-hint">Support for a single or bulk upload.</p>*/}
-        </Upload>
+            </Button> </Upload>
         {/*<Upload.Dragger >*/}
         {/*    <Button>*/}
         {/*        <UploadOutlined/> {value}*/}
@@ -94,7 +94,7 @@ const Inputnumberr = ({label, rules, name, onChange, disabled = false}: { disabl
 }
 
 
-export function CustomForm({onFieldsChange, parentName = "", parentDataStructure, path = [], key}: {key?:string, onFieldsChange?: any, parentName?: any, data?: any, parentDataStructure: any, path?: string[] }) {
+export function CustomForm({onFieldsChange, parentName = "", parentDataStructure, path = [], key}: { key?: string, onFieldsChange?: any, parentName?: any, data?: any, parentDataStructure: any, path?: string[] }) {
     // console.log(data);
     // console.log(parentName);
     const dataStructure = parentDataStructure[parentName] ?? parentDataStructure;
@@ -125,29 +125,33 @@ export function CustomForm({onFieldsChange, parentName = "", parentDataStructure
                     parentName: name,
                     parentDataStructure: dataStructure,
                     path: newPath,
-                    key: parentName+name
+                    key: parentName + name
                 });
             }
             if (dataStructure[name].type == 'Toggle') {
-                return (<Toggle {...dataStructure[name]} name={[...path, parentName, name]} key={parentName+name}/>)
+                return (<Toggle {...dataStructure[name]} name={[...path, parentName, name]} key={parentName + name}/>)
             }
             if (dataStructure[name].type == 'File') {
-                return (<File {...dataStructure[name]} name={[...path, parentName, name]} key={parentName+name}/>)
+                return (<File {...dataStructure[name]} name={[...path, parentName, name]} key={parentName + name}/>)
             }
             if (dataStructure[name].type == 'RadioGroup') {
-                return (<RadioGroup {...dataStructure[name]} name={[...path, parentName, name]} key={parentName+name}/>)
+                return (
+                    <RadioGroup {...dataStructure[name]} name={[...path, parentName, name]} key={parentName + name}/>)
             }
             if (dataStructure[name].type == 'SelectGroup') {
-                return (<SelectGroup {...dataStructure[name]} name={[...path, parentName, name]} key={parentName+name}/>)
+                return (
+                    <SelectGroup {...dataStructure[name]} name={[...path, parentName, name]} key={parentName + name}/>)
             }
             if (dataStructure[name].type == 'InputNumber') {
-                return (<Inputnumberr {...dataStructure[name]} name={[...path, parentName, name]} key={parentName+name}/>)
+                return (
+                    <Inputnumberr {...dataStructure[name]} name={[...path, parentName, name]} key={parentName + name}/>)
             }
             if (dataStructure[name].type == 'CheckBoxGroup') {
-                return (<CheckBoxGroup {...dataStructure[name]} name={[...path, parentName, name]} key={parentName+name}/>)
+                return (<CheckBoxGroup {...dataStructure[name]} name={[...path, parentName, name]}
+                                       key={parentName + name}/>)
             }
             if (dataStructure[name].type == 'CheckBox') {
-                return (<CheckBox {...dataStructure[name]} name={[...path, parentName, name]} key={parentName+name}/>)
+                return (<CheckBox {...dataStructure[name]} name={[...path, parentName, name]} key={parentName + name}/>)
             }
         })}
     </Fragment>);

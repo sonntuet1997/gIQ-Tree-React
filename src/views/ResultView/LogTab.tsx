@@ -92,6 +92,9 @@ export const LogTab = ({url, processedFile, onKill,onDeleteTab, visible}: Log & 
         setTimeout(() => {
             setTooltipVisible(false);
         }, 3000);
+        return () => {
+
+        }
     }, [status]);
 
     const statusComponent: any = {

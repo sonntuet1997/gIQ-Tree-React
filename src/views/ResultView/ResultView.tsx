@@ -31,7 +31,7 @@ function ResultView() {
     useEffect(() => {
         const loop = () => {
             _ResultViewRepository.getAll().subscribe((logResults: Log[]) => {
-                console.log(logResults);
+                // console.log(logResults);
                 setLogs(logResults ?? []);
                 setTimeout(loop, 5000);
             }, error => {
