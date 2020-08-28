@@ -2,12 +2,23 @@ import React from 'reactn';
 import {withRouter} from 'react-router-dom';
 import {useEffect, useState} from "react";
 import Phylotree from "react-phylotree";
-import ButtonGroup from "antd/es/button/button-group";
-import {Button} from "antd";
 import './Test.scss';
-import {ColumnWidthOutlined, VerticalAlignMiddleOutlined,AlignLeftOutlined,UnorderedListOutlined,
-    ColumnHeightOutlined,SortAscendingOutlined,SortDescendingOutlined} from '@ant-design/icons';
+import {
+    AlignLeftOutlined,
+    ColumnHeightOutlined,
+    ColumnWidthOutlined,
+    SortAscendingOutlined,
+    SortDescendingOutlined,
+    UnorderedListOutlined,
+    VerticalAlignMiddleOutlined
+} from '@ant-design/icons';
+import {CustomButton} from "../CustomButton/Custom";
+
 function Test() {
+    const [collapsed, setCollapsed] = useState(false);
+    const toggleCollapsed = () => {
+        setCollapsed(!collapsed);
+    };
     const padding = 70;
     const [state, setState] = useState({
         width: 700,
@@ -37,91 +48,97 @@ function Test() {
     useEffect(() => {
 
     }, []);
-    return (<div style={{height: "calc(100vh - 70px)"}}>
-        <div style={{position: "fixed", display: "block", justifyContent: "space-around", top:"1rem"}}>
-            <ButtonGroup>
-                <Button icon={<ColumnWidthOutlined />}
-                    onClick={() => toggleDimension("width", "expand")}
-                >expand</Button>
-                <Button icon={<VerticalAlignMiddleOutlined rotate={90}/>}
-                    onClick={() => toggleDimension("width", "compress")}
-                >compress</Button>
-                <Button icon={<ColumnHeightOutlined />}
-                    onClick={() => toggleDimension("height", "expand")}
-                >expand</Button>
-                <Button icon={<VerticalAlignMiddleOutlined />}
-                    onClick={() => toggleDimension("height", "compress")}
-                >compress</Button>
-                <Button icon={<SortAscendingOutlined />}
-                    onClick={() => handleSort("ascending")}
-                >ascending</Button>
-                <Button icon={<SortDescendingOutlined />}
-                    onClick={() => handleSort("descending")}
-                >descending</Button>
-                <Button icon={<AlignLeftOutlined />}
-                    onClick={() => alignTips("left")}
-                >left</Button>
-                <Button icon={<UnorderedListOutlined />}
-                    onClick={() => alignTips("right")}
-                >right</Button>
-            </ButtonGroup>
+    return (
+        <div style={{height: "calc(100vh - 70px)"}}>
+            <div style={{maxWidth: "130px", position: "absolute", right: "30px", top: "30px"}}>
+                <CustomButton icon={<ColumnWidthOutlined/>} placement={"left"}
+                              onClick={() => toggleDimension("width", "expand")}
+                >expand</CustomButton>
+                <CustomButton icon={<VerticalAlignMiddleOutlined rotate={90}/>} placement={"left"}
+                              onClick={() => toggleDimension("width", "compress")}
+                >compress</CustomButton>
+                <CustomButton icon={<ColumnHeightOutlined/>} placement={"left"}
+                              onClick={() => toggleDimension("height", "expand")}
+                >expand</CustomButton>
+                <CustomButton icon={<VerticalAlignMiddleOutlined/>} placement={"left"}
+                              onClick={() => toggleDimension("height", "compress")}
+                >compress</CustomButton>
+                <CustomButton icon={<SortAscendingOutlined/>} placement={"left"}
+                              onClick={() => handleSort("ascending")}
+                >ascending</CustomButton>
+                <CustomButton icon={<SortDescendingOutlined/>} placement={"left"}
+                              onClick={() => handleSort("descending")}
+                >descending</CustomButton>
+                <CustomButton icon={<AlignLeftOutlined/>} placement={"left"}
+                              onClick={() => alignTips("left")}
+                >left</CustomButton>
+                <CustomButton icon={<UnorderedListOutlined/>} placement={"left"}
+                              onClick={() => alignTips("right")}
+                >right</CustomButton>
+            </div>
+            <svg width={"100%"} height={"100%"}>
+                <Phylotree width={state.width - 2 * padding}
+                           height={state.height - 2 * padding}
+                           maxLabelWidth={state.maxLabelWidth}
+                           sort={state.sort}
+                           alignTips={state.alignTips}
+                           newick={newWick}
+                           transform={`translate(${padding}, ${padding})`}
+                           includeBLAxis/>
+            </svg>
+            <svg width={"100%"} height={"100%"}>
+                <Phylotree width={state.width - 2 * padding}
+                           height={state.height - 2 * padding}
+                           maxLabelWidth={state.maxLabelWidth}
+                           sort={state.sort}
+                           alignTips={state.alignTips}
+                           newick={newWick}
+                           transform={`translate(${padding}, ${padding})`}
+                           includeBLAxis/>
+            </svg>
+            <svg width={"100%"} height={"100%"}>
+                <Phylotree width={state.width - 2 * padding}
+                           height={state.height - 2 * padding}
+                           maxLabelWidth={state.maxLabelWidth}
+                           sort={state.sort}
+                           alignTips={state.alignTips}
+                           newick={newWick}
+                           transform={`translate(${padding}, ${padding})`}
+                           includeBLAxis/>
+            </svg>
+            <svg width={"100%"} height={"100%"}>
+                <Phylotree width={state.width - 2 * padding}
+                           height={state.height - 2 * padding}
+                           maxLabelWidth={state.maxLabelWidth}
+                           sort={state.sort}
+                           alignTips={state.alignTips}
+                           newick={newWick}
+                           transform={`translate(${padding}, ${padding})`}
+                           includeBLAxis/>
+            </svg>
+            <svg width={"100%"} height={"100%"}>
+                <Phylotree width={state.width - 2 * padding}
+                           height={state.height - 2 * padding}
+                           maxLabelWidth={state.maxLabelWidth}
+                           sort={state.sort}
+                           alignTips={state.alignTips}
+                           newick={newWick}
+                           transform={`translate(${padding}, ${padding})`}
+                           includeBLAxis/>
+            </svg>
+            <svg width={"100%"} height={"100%"}>
+                <Phylotree width={state.width - 2 * padding}
+                           height={state.height - 2 * padding}
+                           maxLabelWidth={state.maxLabelWidth}
+                           sort={state.sort}
+                           alignTips={state.alignTips}
+                           newick={newWick}
+                           transform={`translate(${padding}, ${padding})`}
+                           includeBLAxis/>
+            </svg>
         </div>
-        <svg width={"100%"} height={"100%"}>
-            <Phylotree width={state.width - 2 * padding}
-                       height={state.height - 2 * padding}
-                       maxLabelWidth={state.maxLabelWidth}
-                       sort={state.sort}
-                       alignTips={state.alignTips}
-                       newick={newWick}
-                       transform={`translate(${padding}, ${padding})`}
-                       includeBLAxis/>
-        </svg> <svg width={"100%"} height={"100%"}>
-            <Phylotree width={state.width - 2 * padding}
-                       height={state.height - 2 * padding}
-                       maxLabelWidth={state.maxLabelWidth}
-                       sort={state.sort}
-                       alignTips={state.alignTips}
-                       newick={newWick}
-                       transform={`translate(${padding}, ${padding})`}
-                       includeBLAxis/>
-        </svg> <svg width={"100%"} height={"100%"}>
-            <Phylotree width={state.width - 2 * padding}
-                       height={state.height - 2 * padding}
-                       maxLabelWidth={state.maxLabelWidth}
-                       sort={state.sort}
-                       alignTips={state.alignTips}
-                       newick={newWick}
-                       transform={`translate(${padding}, ${padding})`}
-                       includeBLAxis/>
-        </svg> <svg width={"100%"} height={"100%"}>
-            <Phylotree width={state.width - 2 * padding}
-                       height={state.height - 2 * padding}
-                       maxLabelWidth={state.maxLabelWidth}
-                       sort={state.sort}
-                       alignTips={state.alignTips}
-                       newick={newWick}
-                       transform={`translate(${padding}, ${padding})`}
-                       includeBLAxis/>
-        </svg> <svg width={"100%"} height={"100%"}>
-            <Phylotree width={state.width - 2 * padding}
-                       height={state.height - 2 * padding}
-                       maxLabelWidth={state.maxLabelWidth}
-                       sort={state.sort}
-                       alignTips={state.alignTips}
-                       newick={newWick}
-                       transform={`translate(${padding}, ${padding})`}
-                       includeBLAxis/>
-        </svg> <svg width={"100%"} height={"100%"}>
-            <Phylotree width={state.width - 2 * padding}
-                       height={state.height - 2 * padding}
-                       maxLabelWidth={state.maxLabelWidth}
-                       sort={state.sort}
-                       alignTips={state.alignTips}
-                       newick={newWick}
-                       transform={`translate(${padding}, ${padding})`}
-                       includeBLAxis/>
-        </svg>
-    </div>)
+    )
 }
+
 
 export default withRouter(Test);

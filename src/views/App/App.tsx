@@ -39,7 +39,7 @@ function App(props: RouteConfigComponentProps) {
                     <Layout className="site-layout">
                         {/*<AppHeader user={user}/>*/}
                         {/*<Header className="site-layout-sub-header-background" style={{padding: 0}}/>*/}
-                        <Content style={{margin: '0 16px 0', overflow: 'initial', minHeight: 'calc(100vh - 70px)'}}>
+                        <Content style={{margin: '0 16px 0', overflow:"overlay", minHeight: 'calc(100vh - 70px)'}}>
                             <Switch>
                                 {route?.routes instanceof Array && renderRoutes(route.routes)}
                             </Switch>

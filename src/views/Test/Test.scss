@@ -1,4 +1,5 @@
-path.rp-branch {
+
+.rp-branch {
   transition: d 0.5s;
   fill: none;
   shape-rendering: crispEdges;
@@ -19,7 +20,27 @@ text.label {
 
 .branch-tracer {
   stroke: #bbb;
-  stroke-dasharray: 3,4;
+  stroke-dasharray: 3, 4;
   stroke-width: 1px;
+}
+//
+//$screen-sm-min: 1000px;
+//@media (min-width: $screen-sm-min) {
+//  .hiddenTitle {
+//    display: none!important;
+//  }
+//  .hiddenTooltip {
+//    display: none!important;;
+//  }
+//}
+
+$screen-sm: 1000px;
+@media (max-width: $screen-sm) {
+  .hiddenTitle {
+    display: none!important;;
+  }
+  //.hiddenTooltip {
+  //  display: none!important;;
+  //}
 }
 

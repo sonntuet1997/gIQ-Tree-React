@@ -165,7 +165,7 @@ export const LogTab = ({url, processedFile, onKill,onDeleteTab, visible}: Log & 
                                 loading={downloadingZip}
                                 onClick={hideModal}>
                             {translate("logWebsocket.action.showTree")}
-                        </Button>,
+                        </Button>
                     </NavLink>,
                         <Button onClick={killProcess} type="primary" key="console" icon={<CloseCircleFilled/>}>
                             {translate("logWebsocket.action.stop")}
@@ -187,7 +187,7 @@ export const LogTab = ({url, processedFile, onKill,onDeleteTab, visible}: Log & 
                                     loading={downloadingZip}
                                     onClick={hideModal}>
                                 {translate("logWebsocket.action.showTree")}
-                            </Button>,
+                            </Button>
                         </NavLink>,
                         <Button type="primary" key="console" icon={<DownloadOutlined/>} onClick={handleDownloadZip}
                                 loading={downloadingZip}>

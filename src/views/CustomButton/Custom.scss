@@ -1,0 +1,7 @@
+$screen-sm: 1000px;
+@media (max-width: $screen-sm) {
+  .hiddenTitle {
+    display: none!important;;
+  }
+}
+

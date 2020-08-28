@@ -42,7 +42,7 @@ function ResultView() {
     // useEffect(() =>{
     //
     // },[]);
-    return (<Affix offsetBottom={0} style={{textAlign:"end"}}>
+    return (<Affix style={{textAlign: "end", position: 'fixed', bottom: '1vh', right: 0}}>
             {logs.map((log) =>
                 <LogTab  {...log} onKill={killProcess} key={log.url + log.id} onDeleteTab={deleteTab}/>
             )}
