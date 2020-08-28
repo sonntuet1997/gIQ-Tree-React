@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import 'components/App/AppMenu/AppMenu.scss';
 import {RouteConfig} from 'react-router-config';
-import {Layout, Menu} from "antd";
+import {Affix, Layout, Menu} from "antd";
 import logo from "../AppHeader/logo.svg";
 import {APP_TITLE, BASE_URL} from "../../../config/consts";
 import AppMenuItem from "./AppMenuItem/AppMenuItem";
@@ -72,53 +72,51 @@ function AppMenu({menu}: AppMenuProps) {
                     console.log(collapsed, type);
                 }}>
             </Sider>
-            <Sider
-                style={{
-                    overflowX: 'hidden',
-                    height: 'calc(100vh - 48px)',
-                    position: 'fixed',
-                    left: 0,
-                    top: 0,
-                    zIndex: 999
-                }}
-                collapsed={state.collapsed}
-                collapsible
-                breakpoint="lg"
-                onBreakpoint={broken => {
-                    console.log(broken);
-                }}
-                onCollapse={(collapsed, type) => {
-                    toggleCollapsed();
-                    console.log(collapsed, type);
-                }}>
-                <div style={{height: "calc(100vh - 70px)"}}>
-                    <div className="logo" onClick={GoBackToHomePage}>
-                        <Menu theme="dark" mode="inline">
-                            <Menu.Item key="1" className={"logo-container"}
-                                       icon={<img alt={'d'} className="app-logo-image" src={logo}/>}>
-                                <b>{APP_TITLE}</b>
-                            </Menu.Item>
-                        </Menu>
-                    </div>
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                        {menu && menu.map((item) =>
-                            item.display ? AppMenuItem({item: item}) : null
-                        )}
-                    </Menu>
-                    <div style={{
-                        marginTop: "1rem",
-                        color: "gray",
-                        fontSize: "small",
-                        textAlign: "center",
-                        width: "100%",
-                        visibility: (state.collapsed ? "hidden" : "visible")
+            <Affix style={{
+                position: 'absolute', left: 0
+            }} offsetTop={0}>
+                <Sider
+                    style={{
+                        overflowX: 'hidden',
+                        height: 'calc(100vh - 48px)',
+                    }}
+                    collapsed={state.collapsed}
+                    collapsible
+                    breakpoint="lg"
+                    onBreakpoint={broken => {
+                        console.log(broken);
+                    }}
+                    onCollapse={(collapsed, type) => {
+                        toggleCollapsed();
+                        console.log(collapsed, type);
                     }}>
-                        <div>IQ-TREE ©2020</div>
-                        {/*<div>Created by SonNT-UET</div>*/}
+                    <div style={{height: "calc(100vh - 70px)"}}>
+                        <div className="logo" onClick={GoBackToHomePage}>
+                            <Menu theme="dark" mode="inline">
+                                <Menu.Item key="1" className={"logo-container"}
+                                           icon={<img alt={'d'} className="app-logo-image" src={logo}/>}>
+                                    <b>{APP_TITLE}</b>
+                                </Menu.Item>
+                            </Menu>
+                        </div>
+                        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+                            {menu && menu.map((item) =>
+                                item.display ? AppMenuItem({item: item}) : null
+                            )}
+                        </Menu>
+                        <div style={{
+                            marginTop: "1rem",
+                            color: "gray",
+                            fontSize: "small",
+                            textAlign: "center",
+                            width: "100%",
+                            visibility: (state.collapsed ? "hidden" : "visible")
+                        }}>
+                            <div>IQ-TREE ©2020</div>
+                            {/*<div>Created by SonNT-UET</div>*/}
+                        </div>
                     </div>
-                </div>
-
-            </Sider>
+                </Sider></Affix>
         </>
 
     );

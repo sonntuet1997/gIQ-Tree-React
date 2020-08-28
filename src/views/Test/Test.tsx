@@ -75,6 +75,51 @@ function Test() {
                        newick={newWick}
                        transform={`translate(${padding}, ${padding})`}
                        includeBLAxis/>
+        </svg> <svg width={"100%"} height={"100%"}>
+            <Phylotree width={state.width - 2 * padding}
+                       height={state.height - 2 * padding}
+                       maxLabelWidth={state.maxLabelWidth}
+                       sort={state.sort}
+                       alignTips={state.alignTips}
+                       newick={newWick}
+                       transform={`translate(${padding}, ${padding})`}
+                       includeBLAxis/>
+        </svg> <svg width={"100%"} height={"100%"}>
+            <Phylotree width={state.width - 2 * padding}
+                       height={state.height - 2 * padding}
+                       maxLabelWidth={state.maxLabelWidth}
+                       sort={state.sort}
+                       alignTips={state.alignTips}
+                       newick={newWick}
+                       transform={`translate(${padding}, ${padding})`}
+                       includeBLAxis/>
+        </svg> <svg width={"100%"} height={"100%"}>
+            <Phylotree width={state.width - 2 * padding}
+                       height={state.height - 2 * padding}
+                       maxLabelWidth={state.maxLabelWidth}
+                       sort={state.sort}
+                       alignTips={state.alignTips}
+                       newick={newWick}
+                       transform={`translate(${padding}, ${padding})`}
+                       includeBLAxis/>
+        </svg> <svg width={"100%"} height={"100%"}>
+            <Phylotree width={state.width - 2 * padding}
+                       height={state.height - 2 * padding}
+                       maxLabelWidth={state.maxLabelWidth}
+                       sort={state.sort}
+                       alignTips={state.alignTips}
+                       newick={newWick}
+                       transform={`translate(${padding}, ${padding})`}
+                       includeBLAxis/>
+        </svg> <svg width={"100%"} height={"100%"}>
+            <Phylotree width={state.width - 2 * padding}
+                       height={state.height - 2 * padding}
+                       maxLabelWidth={state.maxLabelWidth}
+                       sort={state.sort}
+                       alignTips={state.alignTips}
+                       newick={newWick}
+                       transform={`translate(${padding}, ${padding})`}
+                       includeBLAxis/>
         </svg>
     </div>)
 }

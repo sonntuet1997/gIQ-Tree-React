@@ -7,6 +7,7 @@ import {_ResultViewRepository} from "../../repositories/ResultViewRepository";
 import {Log} from "../../models/Log";
 import {useTranslation} from "react-i18next";
 import {LogTab} from "./LogTab";
+import {Affix} from "antd";
 
 
 function ResultView() {
@@ -41,12 +42,12 @@ function ResultView() {
     // useEffect(() =>{
     //
     // },[]);
-    console.log(logs);
-    return (<div style={{zIndex: 999, position: 'fixed', bottom: '1vh', right: 0, alignItems: 'flex-end'}}>
-        {logs.map((log) =>
-            <LogTab  {...log} onKill={killProcess} key={log.url + log.id} onDeleteTab={deleteTab}/>
-        )}
-    </div>);
+    return (<Affix offsetBottom={0} style={{textAlign:"end"}}>
+            {logs.map((log) =>
+                <LogTab  {...log} onKill={killProcess} key={log.url + log.id} onDeleteTab={deleteTab}/>
+            )}
+        </Affix>
+    );
 }
 
 
