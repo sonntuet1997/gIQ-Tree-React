@@ -56,5 +56,6 @@
   "generateTree.SearchParameters.Label": "IQ-TREE Search Parameters",
   "generateTree.SearchParameters.PerturbationStrength.Label": "Perturbation strength",
   "generateTree.SearchParameters.StoppingRule.Label": "IQ-TREE stopping rule",
-  "generateTree.Generate.Label": "Start generate tree"
+  "generateTree.Generate.Label": "Start generate tree",
+  "generateTree.Reset.Label": "Reset form"
 }

@@ -20,7 +20,7 @@ const saveLocalJSON = (key: string, data: any) => localStorage.setItem(key, JSON
 function GenerateTree() {
     const [translate] = useTranslation();
     const [form] = useForm();
-    const {logs, appendLog, removeLog} = useResultView();
+    const {logs, overrideLog, removeLog} = useResultView();
     const [alignmentError, setAlignmentError] = useState();
     const localStorageKey = "GenerateTreeForm";
     const startGenerate = (form: any) => {
@@ -35,7 +35,7 @@ function GenerateTree() {
             _GenerateTreeRepository.startGenerate(formData).subscribe(x => {
                 x.visible = true;
                 x.id = nextId();
-                appendLog(x);
+                overrideLog(x);
             }, error => {
                 throw new Error(error);
             });

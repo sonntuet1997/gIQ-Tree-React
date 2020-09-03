@@ -60,7 +60,7 @@ function TreeView({match}: any) {
                         setVisibility("visible");
                     }
                 }
-                setTimeout(loop, 1000);
+                setTimeout(loop, 100000);
             });
         }
         loop();

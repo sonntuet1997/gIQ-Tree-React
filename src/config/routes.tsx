@@ -41,13 +41,13 @@ export const routes: RouteConfig[] = [
             {
                 name: "Tree",
                 path: '/tree/:urlId',
-                component: TreeView,
+                component: Test,
                 // routes: [],
                 icon: <AreaChartOutlined/>,
                 display: false
             },
             {
-                name: "Test",
+                name: "Tree",
                 path: '/test',
                 icon: <ExperimentOutlined/>,
                 component: Test,
@@ -66,7 +66,7 @@ export const routes: RouteConfig[] = [
                 //         icon: <ExperimentOutlined/>,
                 //         display: true
                 //     }],
-                display: true
+                display: false
             }]
     }
 ];

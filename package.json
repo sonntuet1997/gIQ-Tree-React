@@ -66,6 +66,7 @@
     "react-google-login": "^5.1.21",
     "react-i18next": "^11.7.0",
     "react-id-generator": "^3.0.1",
+    "react-particles-js": "^3.3.0",
     "react-phylotree": "^0.4.3",
     "react-router-config": "^5.1.1",
     "react-router-dom": "^5.2.0",

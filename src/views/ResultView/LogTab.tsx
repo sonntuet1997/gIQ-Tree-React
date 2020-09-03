@@ -196,9 +196,6 @@ export const LogTab = ({url, processedFile, onKill,onDeleteTab, visible}: Log & 
                                 loading={downloadingZip}>
                             {downloadingZip ? translate("logWebsocket.action.downloading") : translate("logWebsocket.action.download")}
                         </Button>
-
-
-                        // <Button key="buy">Buy Again</Button>,
                     ]}
                 />
                 <MyTerminal iqCommand={"command: "} stdout={terminalOutput} style={{height: '30px'}} commands={{}}
